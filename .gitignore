@@ -13,3 +13,12 @@ thumbs.db
 */system/cache/!index.html
 */wsdls/*
 *mailing/
+.DS_Store
+
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
+
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
