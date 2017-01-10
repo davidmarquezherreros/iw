@@ -19,8 +19,21 @@
       }
 
       public function login(){
-        echo "no se como hacer el submit de mierda";
-      }
+        if (count($_POST)>0) //Solo se ejecutará si se han enviado datos por el formulario
+        {
+            // echo $_POST['username'];
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            if(true){ // El usuario puede acceder a la web
 
+            }
+            else{ // El usuario no puede acceder a la web
+              $this->index();
+            }
+        }
+        else{
+            $this->index();
+        }
+      }
    }
 ?>

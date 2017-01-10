@@ -17,24 +17,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$this->load->view('inc/menu.php');
 			 ?>
 		</div>
-    <div id="form">
-      <form id="login" method="POST" action="sesion/login">
-				<?php echo validation_errors(); ?>
-        <?php echo form_open('login'); ?>  
-        <div class="form-group">
-          <label for="email">Correo electronico:</label>
-          <input type="email" class="form-control" id="email">
-        </div>
-        <div class="form-group">
-          <label for="pwd">Contraseña:</label>
-          <input type="password" class="form-control" id="password">
-        </div>
-        <div class="checkbox">
-          <label><input type="checkbox"> Remember me</label>
-        </div>
-        <button type="submit" name="loginSubmitButton" id="loginSubmitButton" value="Sesion" class="btn btn-default" >Iniciar sesión</button>
-      </form>
+		<main>
+			<form action="/iw/index.php/sesion/login" method ="post">
+				<div class="form-group" style="min-width=480px; margin: auto; width: 50%;">
+					<label for="username">Username:</label>
+					<input type="text" class="form-control" name="username" placeholder="" autofocus id="input_username"><br>
+					<label for="pass">Password:</label>
+					<input type="password" class="form-control" name="pass" palceholder="" id="input_password"><br>
+					<input id="btnLogin" type="submit" class="btn btn-default" value="Iniciar sesión"><br>
+				</div>
+			</form>
+			<div class="alert alert-danger" id="errorLogin">
+			  <strong>Error!</strong> Usuario/contraseña incorrecta!
+			</div>
+		</main>
   	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(e) {
+		  $("#errorLogin").hide();
+			$("#btnLogin").click(function(e) {
+					var usuario = $("#input_username").val();
+					var contraseña = $("input_password").val();
+					if (usuario =="" || contraseña == "") {
+							e.preventDefault();
+							$("#errorLogin").show();
+							$("#input_username").addClass("has-error");
+							$("#input_password").addClass("has-error");
+					}
+			});
+	});
+</script>
 </body>
 </html>
