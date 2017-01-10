@@ -31,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</main>
   	</div>
 </div>
+<!-- START SCRIPTS -->
 <script type="text/javascript">
 	$(document).ready(function(e) {
 		  $("#errorLogin").hide();
@@ -46,5 +47,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			});
 	});
 </script>
+<!-- END SCRIPTS -->
 </body>
 </html>
