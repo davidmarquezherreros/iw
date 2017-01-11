@@ -1,0 +1,26 @@
+.container {
+	background-color: white;
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-top: 0px;
+	padding-bottom: 30px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.formregistro {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.formregistro input {
+	width: 800px;
+}
+
+.botonregistro {
+	margin-top: 20px;
+}
+
+.campoobligatorio {
+	color: red;
+}
