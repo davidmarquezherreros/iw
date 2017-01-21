@@ -28,6 +28,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data['articulos']=$this->Articulo_m->get_articulos();
+		$data['secciones'] = $this->Seccion_m->get_secciones();
 		$this->load->view('home',$data);
 	}
 }

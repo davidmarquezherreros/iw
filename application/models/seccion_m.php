@@ -13,7 +13,7 @@
 			$this->db->select('Nombre');
 			$this->db->where('id', $id);
 
-			return $this->db->get("Seccion")->result();
+			return $this->db->get("Seccion")->row();
 		}
 
 		function get_secciones() {

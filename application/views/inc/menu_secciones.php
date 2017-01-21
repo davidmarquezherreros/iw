@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default">
     <ul class="nav navbar-nav">
       <?php
-        $secciones = $this->Seccion_m->get_secciones();
         foreach($secciones as $seccion){
-          $link = site_url($seccion->Nombre);
-          echo '<li class="active"><a href='.$link.'>'.$seccion->Nombre.'</a></li>';
+        	?>
+          <li class="active"><a href="<?=site_url('/articulo/verArticulosSeccion/' . $seccion->id)?>"><?=$seccion->Nombre?></a></li>
+          <?php
         }
       ?>
     </ul>
