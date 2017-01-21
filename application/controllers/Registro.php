@@ -7,6 +7,7 @@
          parent::__construct();
 
         $this->load->library('form_validation');
+        $this->load->library('session');
          $this->load->helper('url');
          $this->load->model("usuario_m", '', TRUE);
       }
