@@ -25,7 +25,7 @@
 
 		}
 		function login($username, $password){
-			$this->db->select('Username, Password');
+			$this->db->select('Username, Password, Admin');
 			$this->db->where('Username', $username);
 			$this->db->where('Password', $password);
 			return $this->db->get("Usuario")->result();

@@ -14,6 +14,12 @@
       <li class="active"><a href='<?php echo site_url('home')?>'>Mi ebay</a></li>
       <li class="active"><a href='<?php echo site_url('home')?>'>Buscar</a></li>
       <li class="active"><a href='<?php echo site_url('home')?>'><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
+      <?php
+          $sesion=$this->session->userdata('admin');
+          if($sesion==true){
+              echo "<li class=\"active\"><a href='".site_url('BackOffice')."'><span class=\"glyphicon glyphicon-briefcase\" aria-hidden=\"true\"></span> Back Office</a></li>";
+          }
+      ?>
     </ul>
   </div>
 </nav>

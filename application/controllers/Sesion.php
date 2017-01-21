@@ -30,6 +30,7 @@
       public function logout() {
          //removing session data
          $this->session->unset_userdata('usuarioLogueado');
+         $this->session->unset_userdata('admin');
          $this->load->view('login');
       }
 
@@ -54,7 +55,9 @@
                 //echo $usuario[0]->Password;
                 $this->session->set_userdata('usuarioLogueado', $usuario[0]->Username);
                 $this->session->set_flashdata('login', 'Bienvenid@ ' . $usuario[0]->Username . '!');
-
+                if($usuario[0]->Admin == true){
+                  $this->session->set_userdata('admin', $usuario[0]->Admin);
+                }
                 echo "<script>
                         window.location.href = '/iw/index.php/home/';
                      </script>"
