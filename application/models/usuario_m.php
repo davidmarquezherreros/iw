@@ -16,13 +16,20 @@
 				'Email' => $email,
 				'Password' => $password
 			);
-			
+
 			//Lo insertamos en la BD
 			$this->db->insert('usuario',$data);
-			
+
 			$insert_id = $this->db->insert_id();
 			return  $insert_id;
-			
+
 		}
+		function login($username, $password){
+			$this->db->select('Username, Password');
+			$this->db->where('Username', $username);
+			$this->db->where('Password', $password);
+			return $this->db->get("Usuario")->result();
+		}
+
 	}
 ?>
