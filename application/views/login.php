@@ -18,13 +18,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<main>
 			<form action="/iw/index.php/sesion/login" method ="post">
 				<div class="form-group" style="min-width=480px; margin: auto; width: 50%;">
-					<label for="username">Username:</label>
+					<label for="username">Usuario:</label>
 					<input type="text" class="form-control" name="username" placeholder="" autofocus id="input_username"><br>
-					<label for="pass">Password:</label>
-					<input type="password" class="form-control" name="pass" palceholder="" id="input_password"><br>
+					<label for="pass">Contraseña:</label>
+					<input type="password" class="form-control" name="password" palceholder="" id="input_password"><br>
 					<input id="btnLogin" type="submit" class="btn btn-default" value="Iniciar sesión"><br>
 				</div>
 			</form>
+			<div id="registro" style="min-width=480px; margin: auto; width: 50%;">
+				<br />
+				<?php
+					$registro = "Si todavia no tienes una cuenta pincha <a href=".site_url('Registro').">aquí</a>";
+					echo $registro;
+				 ?>
+			</div>
 			<div class="alert alert-danger" id="errorLogin">
 			  <strong>Error!</strong> Usuario/contraseña incorrecta!
 			</div>
@@ -37,8 +44,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		  $("#errorLogin").hide();
 			$("#btnLogin").click(function(e) {
 					var usuario = $("#input_username").val();
-					var contraseña = $("input_password").val();
-					if (usuario =="" || contraseña == "") {
+					var contraseña = $("#input_password").val();
+					if (usuario =="" || contraseña == "" || contraseña == undefined || usuario == undefined) {
 							e.preventDefault();
 							$("#errorLogin").show();
 							$("#input_username").addClass("has-error");
