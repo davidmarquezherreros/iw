@@ -86,7 +86,7 @@ class BackOffice extends CI_Controller {
 			$crud->set_theme("flexigrid");
 			$crud->set_table('Opinion');
 			$crud->set_subject('Opinion');
-			$crud->columns('id','mensaje','fecha','FK_Usuario');
+			$crud->columns('id','mensaje','fecha','FK_Usuario','FK_Articulo');
 			$output = $crud->render();
 			$this->load->view('backoffice', $output);
 		}
