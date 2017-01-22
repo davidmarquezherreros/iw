@@ -27,7 +27,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?=$articulo->Descripcion?>
 	</p>
 	<h3> <?=$articulo->Precio?>€</h3>
-
+	<div class="row">
+		<?php
+			if(sizeof($opiniones)!=0)
+			{
+				echo "<legend>Opiniones</legend>";
+				foreach($opiniones as $opinion) {
+		?>
+				<div class="panel panel-default" style="width=100px;">
+					<div class="panel-heading">
+						<?php
+								$usuario = $this->usuario_m->get_usuario_id($opinion->FK_Usuario);
+								$html = "<h5>" . $usuario[0]->Username . "</h5>";
+								echo $html;
+						?>
+					</div>
+						<div class="panel-body">
+							<h5 class="pull-right"><?php echo $opinion->fecha;?></h5>
+							<h5> <?=$opinion->mensaje?></h5>
+						</div>
+				</div>
+			<?php } ?>
+			<?php
+			} else {
+		?>
+				<h4>No hay opiniones de este articulo</h4>
+		<?php
+			}
+		?>
+		<?php
+			$url = site_url('articulo/nuevaopinion');
+			echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-comment\" aria-hidden=\"true\"></span> Nueva opinion</a>";
+		 ?>
+	</div>
 </main>
 <?php
 	$this->load->view('inc/pie.php')

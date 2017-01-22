@@ -11,14 +11,14 @@
 			$query = $this->db->query('SELECT id, Nombre, Descripcion, Precio FROM articulos WHERE id='. $id);
 
 			return $query->row();
-			
+
 		}
 
 		function get_articulos_seccion($id) {
 			$query = $this->db->query('SELECT articulos.id, articulos.Nombre, articulos.Descripcion, articulos.Precio FROM articulos, seccion WHERE seccion.id=articulos.FK_Seccion AND seccion.id='. $id);
 
 			return $query->result();
-			
+
 		}
 	}
 ?>

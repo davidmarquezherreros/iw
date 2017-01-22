@@ -6,6 +6,13 @@
 		return $this->db->get("usuario")->result();
 		}
 
+		function get_usuario_id($id){
+			$this->db->select('Username');
+			$this->db->where('id', $id);
+			return $this->db->get("Usuario")->result();
+
+		}
+
 		function count_all() {
 			return $this->db->count_all("usuario");
 		}
@@ -31,5 +38,10 @@
 			return $this->db->get("Usuario")->result();
 		}
 
+		function get_id_username($username){
+			$this->db->select('id');
+			$this->db->where('Username', $username);
+			return $this->db->get("Usuario")->result();
+		}
 	}
 ?>
