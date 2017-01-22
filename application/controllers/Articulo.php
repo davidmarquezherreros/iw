@@ -23,6 +23,7 @@
       public function verArticulo($id){
          $data['secciones'] = $this->seccion_m->get_secciones();
          $data['articulo']=$this->articulo_m->get_articulo($id);
+         $data['vendedor']=$this->usuario_m->get_articulo_usuario($id);
          $this->load->view('articulo', $data);
       }
 
