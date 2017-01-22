@@ -6,6 +6,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$this->load->view('inc/head.php');
  ?>
 <main class="container">
+	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.min.js"); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/shop-homepage.css"); ?>" />
 	<div id="container">
 		<div id="menu">
@@ -21,6 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 ?>
 		</div>
 	</div>
+	<h1>Resultados de buscar <strong><?=$_GET['search_query']?></strong></h1>
+	<div class="numresultados"><h3><?=$cuantosarticulos?> resultados</h3></div>
 	<div class="row">
 		<?php
 			if(sizeof($articulos)!=0)
@@ -55,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php
 			} else {
 		?>
-				<h4>No hay articulos con esos valores buscados</h4>
+				<h4>No hay resultados en la busqueda</h4>
 		<?php
 			}
 		?>
@@ -65,4 +69,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
 	$this->load->view('inc/pie.php')
  ?>
- </html>
