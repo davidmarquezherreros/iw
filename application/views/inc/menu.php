@@ -13,7 +13,7 @@
       ?>
       <li class="active"><a href='<?php echo site_url('home')?>'>Mi ebay</a></li>
       <li class="active"><a href='<?php echo site_url('home')?>'>Buscar</a></li>
-      <li class="active"><a href='<?php echo site_url('home')?>'><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
+      <li class="active"><a href='<?php echo site_url('carrito')?>'><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
       <li class="active"><a href='<?php echo site_url('about')?>'><span class="glyphicon glyphicon-user" aria-hidden="true"></span> About us</a></li>
       <?php
           $sesion=$this->session->userdata('admin');
