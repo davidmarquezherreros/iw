@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-01-2017 a las 11:04:27
+-- Tiempo de generación: 22-01-2017 a las 20:06:38
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -35,6 +35,14 @@ CREATE TABLE `Articulos` (
   `FK_Sub_Seccion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `Articulos`
+--
+
+INSERT INTO `Articulos` (`id`, `Nombre`, `Descripcion`, `Precio`, `FK_Seccion`, `FK_Sub_Seccion`) VALUES
+(1, 'Prueba backoffice', 'So guud', 100, 2, 1),
+(2, '123', '123', 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +53,13 @@ CREATE TABLE `Articulo_Usuario` (
   `idArticulo` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Articulo_Usuario`
+--
+
+INSERT INTO `Articulo_Usuario` (`idArticulo`, `idUsuario`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -63,6 +78,13 @@ CREATE TABLE `Direcciones` (
   `FK_Usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `Direcciones`
+--
+
+INSERT INTO `Direcciones` (`id`, `Pais`, `Direccion`, `CodigoPostal`, `Ciudad`, `ComunidadAutonoma`, `Telefono`, `FK_Usuario`) VALUES
+(1, 'Probando back office', '123', 123, '123', '123', 123, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +97,13 @@ CREATE TABLE `Imagenes` (
   `titulo` varchar(250) NOT NULL,
   `FK_Imagen_Articulo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Imagenes`
+--
+
+INSERT INTO `Imagenes` (`id`, `imagen`, `titulo`, `FK_Imagen_Articulo`) VALUES
+(1, 'probando back office', '1234', 1);
 
 -- --------------------------------------------------------
 
@@ -90,6 +119,13 @@ CREATE TABLE `Linea_pedido` (
   `FK_Articulo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `Linea_pedido`
+--
+
+INSERT INTO `Linea_pedido` (`id`, `importe`, `cantidad`, `FK_Pedido`, `FK_Articulo`) VALUES
+(1, 0, 123, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -100,8 +136,17 @@ CREATE TABLE `Opinion` (
   `id` int(11) NOT NULL,
   `mensaje` varchar(250) NOT NULL,
   `fecha` date NOT NULL,
-  `FK_Usuario` int(11) NOT NULL
+  `FK_Usuario` int(11) NOT NULL,
+  `FK_Articulo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Opinion`
+--
+
+INSERT INTO `Opinion` (`id`, `mensaje`, `fecha`, `FK_Usuario`, `FK_Articulo`) VALUES
+(1, 'Transaccion perfecta!', '2017-01-02', 1, 1),
+(2, '1111', '2017-01-04', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -114,6 +159,13 @@ CREATE TABLE `Pedido` (
   `fecha` date NOT NULL,
   `FK_Usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Pedido`
+--
+
+INSERT INTO `Pedido` (`numpedido`, `fecha`, `FK_Usuario`) VALUES
+(1, '2017-01-11', 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +188,7 @@ INSERT INTO `Seccion` (`id`, `Nombre`) VALUES
 (4, 'Moda'),
 (5, 'Motor'),
 (6, 'Deportes'),
-(7, 'Occio'),
+(7, 'Ocio'),
 (8, 'Coleccionismo'),
 (9, 'Vinos y gastronomía'),
 (10, 'Segunda mano');
@@ -177,8 +229,17 @@ CREATE TABLE `Usuario` (
   `Username` varchar(250) NOT NULL,
   `Password` varchar(250) NOT NULL,
   `Email` varchar(250) NOT NULL,
-  `Telefono` int(11) NOT NULL
+  `Telefono` int(11) NOT NULL,
+  `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Usuario`
+--
+
+INSERT INTO `Usuario` (`id`, `Username`, `Password`, `Email`, `Telefono`, `admin`) VALUES
+(1, 'david', '1234', 'david@david.com', 12345, 0),
+(2, 'admin', 'admin', 'admin@ebay.es', 123123, 1);
 
 --
 -- Índices para tablas volcadas
@@ -256,32 +317,32 @@ ALTER TABLE `Usuario`
 -- AUTO_INCREMENT de la tabla `Articulos`
 --
 ALTER TABLE `Articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `Direcciones`
 --
 ALTER TABLE `Direcciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Imagenes`
 --
 ALTER TABLE `Imagenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Linea_pedido`
 --
 ALTER TABLE `Linea_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Opinion`
 --
 ALTER TABLE `Opinion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `Pedido`
 --
 ALTER TABLE `Pedido`
-  MODIFY `numpedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `numpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `Seccion`
 --
@@ -296,7 +357,7 @@ ALTER TABLE `Sub_seccion`
 -- AUTO_INCREMENT de la tabla `Usuario`
 --
 ALTER TABLE `Usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
