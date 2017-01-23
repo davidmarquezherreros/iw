@@ -37,6 +37,9 @@
       }
 
       public function nuevaopinion(){
+        if($this->session->userdata('usuarioLogueado')==""){
+          redirect("sesion");
+        }
         if($_GET['articulo']==""){
           redirect("home");
         }
