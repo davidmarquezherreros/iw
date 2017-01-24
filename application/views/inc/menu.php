@@ -10,6 +10,9 @@
           if($sesion==""){
               echo "<li class=\"active\"><a href='".site_url('sesion')."'>Iniciar sesión</a></li>";
           }
+          else{
+              echo "<li class=\"active\"><a href='".site_url('pedidos')."'>Pedidos</a></li>";
+          }
       ?>
       <li class="active"><a href='<?php echo site_url('home')?>'>Mi ebay</a></li>
       <li class="active"><a href='<?php echo site_url('home')?>'>Buscar</a></li>

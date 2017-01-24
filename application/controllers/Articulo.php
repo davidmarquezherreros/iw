@@ -10,7 +10,7 @@
          $this->load->model("usuario_m", '', TRUE);
          $this->load->model("articulo_m", '', TRUE);
          $this->load->model("seccion_m", '', TRUE);
-          $this->load->model("opinion_m", '', TRUE);
+         $this->load->model("opinion_m", '', TRUE);
 
       }
 
@@ -37,6 +37,9 @@
       }
 
       public function nuevaopinion(){
+        if($this->session->userdata('usuarioLogueado')==""){
+          redirect("sesion");
+        }
         if($_GET['articulo']==""){
           redirect("home");
         }
