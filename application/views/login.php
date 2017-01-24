@@ -56,4 +56,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 <!-- END SCRIPTS -->
 </body>
-</html>
+<?php
+	$this->load->view('inc/pie.php')
+ ?>
