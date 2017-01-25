@@ -37,6 +37,72 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 ?>
 		</div>
 	</div>
+	<?php
+	$numImagenes = $this->articulo_m->get_count_imagenes($articulo->id);
+	if($numImagenes!=0){
+	?>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 50px;">
+		<!-- Indicators -->
+	    <ol class="carousel-indicators">
+	    	<?php
+	    		for($i=0; $i <=$numImagenes; $i++){
+	    			if($i==0){
+	    	?>
+		    		<li data-target="#myCarousel" data-slide-to="'<?=$i?>'" class="active"></li>
+		    <?php
+		    		}
+		    		else{
+		    ?>
+		    		<li data-target="#myCarousel" data-slide-to="'<?=$i?>'"></li>
+		    <?php
+		    		}
+		    	}
+		    ?>
+	    </ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			<?php
+	    		$todasImagenes = $this->articulo_m->get_all_imagenes($articulo->id);
+	    		$i=0;
+	    		foreach($todasImagenes as $imagen) {
+	    			if($i==0){
+	    	?>
+		    		<div class="item active">
+		        		<img src='<?=$imagen->imagen?>' alt="Foto 1">
+		   			 </div>
+		    <?php
+		    		$i=1;
+		    		}
+		    		else{
+		    ?>
+		    		<div class="item">
+		        		<img src='<?=$imagen->imagen?>' alt="Foto 2">
+		   			 </div>
+		    <?php
+		    		}
+		    	}
+		    ?>
+		</div>
+
+		<!-- Left and right controls -->
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+	    </a>
+	</div>
+	<?php
+	}
+	else{
+	?>
+		<img class="imagen" src="<?php echo base_url("assets/img/image-not-found.jpg");?>">
+	<?php	
+	}
+	?>
 	<h1><a href="#"><?=$articulo->Nombre?></a></h1>
 	<p>
 		<?=$articulo->Descripcion?>

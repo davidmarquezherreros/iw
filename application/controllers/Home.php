@@ -24,6 +24,7 @@ class Home extends CI_Controller {
 		 $this->load->library('session');
 		 $this->load->model("Seccion_m", '', TRUE);
 		 $this->load->model("Articulo_m", '', TRUE);
+		 $this->load->model("Opinion_m", '', TRUE);
 	 }
 	public function index()
 	{

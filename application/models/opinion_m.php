@@ -27,5 +27,13 @@
 			$insert_id = $this->db->insert_id();
 			return  $insert_id;
 		}
+
+		function get_count_opiniones($id) {
+			$where = array('FK_Articulo' => $id);
+			$this->db->select('mensaje');
+			$this->db->where($where);
+			return $this->db->count_all_results('opinion');
+
+		}
 	}
 ?>
