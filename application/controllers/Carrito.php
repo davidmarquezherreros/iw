@@ -126,6 +126,7 @@ class Carrito extends CI_Controller {
 		$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
 		$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
 		$this->Pedido_m->update_pedido($pedido[0]->numpedido,date("Y/m/d"));
+		redirect("carrito");
 	}
 }
 ?>
