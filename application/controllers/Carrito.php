@@ -85,9 +85,14 @@ class Carrito extends CI_Controller {
 		else{
 			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
 			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
-			$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
-			$this->Linea_pedido_m->update_linea_pedido($linea[0]->id,$linea[0]->cantidad+1);
-			redirect("carrito");
+			if($pedido[0]->FK_Usuario != $usuario){
+				$data['mensaje']="Este cesta no te pertenece!";
+				$this->load->view('error',$data);
+			}else{
+				$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
+				$this->Linea_pedido_m->update_linea_pedido($linea[0]->id,$linea[0]->cantidad+1);
+				redirect("carrito");
+			}
 		}
 	}
 	// - 1
@@ -97,16 +102,21 @@ class Carrito extends CI_Controller {
 			$this->load->view('error',$data);
 		}
 		else{
-			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
-			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
-			$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
-			if($linea[0]->cantidad==1){
-				$this->Linea_pedido_m->delete_linea_pedido($linea[0]->id);
+			if($pedido[0]->FK_Usuario != $usuario){
+				$data['mensaje']="Este cesta no te pertenece!";
+				$this->load->view('error',$data);
+			}else{
+				$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
+				$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
+				$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
+				if($linea[0]->cantidad==1){
+					$this->Linea_pedido_m->delete_linea_pedido($linea[0]->id);
+				}
+				else{
+					$this->Linea_pedido_m->update_linea_pedido($linea[0]->id,$linea[0]->cantidad-1);
+				}
+				redirect("carrito");
 			}
-			else{
-				$this->Linea_pedido_m->update_linea_pedido($linea[0]->id,$linea[0]->cantidad-1);
-			}
-			redirect("carrito");
 		}
 	}
 	// Borrar articulo
@@ -116,11 +126,16 @@ class Carrito extends CI_Controller {
 			$this->load->view('error',$data);
 		}
 		else{
-			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
-			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
-			$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
-			$this->Linea_pedido_m->delete_linea_pedido($linea[0]->id);
-			redirect("carrito");
+			if($pedido[0]->FK_Usuario != $usuario){
+				$data['mensaje']="Este cesta no te pertenece!";
+				$this->load->view('error',$data);
+			}else{
+				$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
+				$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
+				$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
+				$this->Linea_pedido_m->delete_linea_pedido($linea[0]->id);
+				redirect("carrito");
+			}
 		}
 	}
 

@@ -44,10 +44,18 @@ class Pedidos extends CI_Controller {
 
 	public function detalles(){
 		$numpedido = $_GET['numpedido'];
+		$sesion = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
 		if(is_numeric($numpedido)){
 			$lineas = $this->Linea_pedido_m->get_all_pedido($numpedido);
-			$data['lineas']=$lineas;
-			$this->load->view('detallepedido',$data);
+			$pedido = $this->Pedido_m->get_all_numpedido($numpedido);
+			if($pedido[0]->FK_Usuario != $sesion){
+				$data['mensaje']="Este pedido no te pertenece!";
+				$this->load->view('error',$data);
+			}
+			else{
+				$data['lineas']=$lineas;
+				$this->load->view('detallepedido',$data);
+			}
 		}
 		else{
 			$data['mensaje']="El numero de pedido pasado por parametro no es valido";
