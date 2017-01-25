@@ -6,7 +6,7 @@ class Busqueda_m extends CI_Model {
 	
 	/* Obtenemos todos los videos según la búsqueda */
 	function get_search_all($buscado) {
-		$this->db->select('id, Nombre, Descripcion, Precio');
+		$this->db->select('id, Nombre, Descripcion, Precio, FK_Seccion');
 		$this->db->from('articulos');
 		if($buscado!="") {
 			$this->db->like('descripcion', $buscado);
@@ -17,7 +17,7 @@ class Busqueda_m extends CI_Model {
 	
 	/* Numero de items que aparecen en total */
 	function count_search_all($buscado) {
-		$this->db->select('id, Nombre, Descripcion, Precio');
+		$this->db->select('id, Nombre, Descripcion, Precio, FK_Seccion');
 		$this->db->from('articulos');
 		if($buscado!="") {
 			$this->db->like('descripcion', $buscado);
@@ -31,7 +31,7 @@ class Busqueda_m extends CI_Model {
 	
 	/* Si hacemos paginación con php necesitaríamos este método */
 	function get_search_offset_limit($desde, $hasta) {
-		$this->db->select('id, Nombre, Descripcion, Precio');
+		$this->db->select('id, Nombre, Descripcion, Precio, FK_Seccion');
 		$this->db->from('articulos');
 		$this->db->limit($hasta, $desde);
 		return $this->db->get()->result();

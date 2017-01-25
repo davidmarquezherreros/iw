@@ -11,6 +11,8 @@ class Busqueda extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model("Busqueda_m", '', TRUE);
 		$this->load->model("seccion_m", '', TRUE);
+		$this->load->model("articulo_m", '', TRUE);
+        $this->load->model("opinion_m", '', TRUE);
 	}
 
 
