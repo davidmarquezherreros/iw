@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-01-2017 a las 20:06:38
+-- Tiempo de generación: 25-01-2017 a las 19:49:50
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Articulos`
+-- Estructura de tabla para la tabla `articulos`
 --
 
 CREATE TABLE `articulos` (
@@ -36,17 +36,17 @@ CREATE TABLE `articulos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `Articulos`
+-- Volcado de datos para la tabla `articulos`
 --
 
 INSERT INTO `articulos` (`id`, `Nombre`, `Descripcion`, `Precio`, `FK_Seccion`, `FK_Sub_Seccion`) VALUES
 (1, 'Prueba backoffice', 'So guud', 100, 2, 1),
-(2, '123', '123', 0, 0, 0);
+(2, '123', '123', 99.95, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Articulo_Usuario`
+-- Estructura de tabla para la tabla `articulo_usuario`
 --
 
 CREATE TABLE `articulo_usuario` (
@@ -55,11 +55,22 @@ CREATE TABLE `articulo_usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `Articulo_Usuario`
+-- Volcado de datos para la tabla `articulo_usuario`
 --
 
 INSERT INTO `articulo_usuario` (`idArticulo`, `idUsuario`) VALUES
 (1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Deseo_Articulos`
+--
+
+CREATE TABLE `deseo_Articulos` (
+  `FK_Articulos` int(11) NOT NULL,
+  `FK_Lista_Desear` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -83,7 +94,7 @@ CREATE TABLE `direcciones` (
 --
 
 INSERT INTO `direcciones` (`id`, `Pais`, `Direccion`, `CodigoPostal`, `Ciudad`, `ComunidadAutonoma`, `Telefono`, `FK_Usuario`) VALUES
-(1, 'Probando back office', '123', 123, '123', '123', 123, 1);
+(9, 'autofocus', 'autofocus', 0, 'autofocus', 'autofocus', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -124,7 +135,22 @@ CREATE TABLE `linea_pedido` (
 --
 
 INSERT INTO `linea_pedido` (`id`, `importe`, `cantidad`, `FK_Pedido`, `FK_Articulo`) VALUES
-(1, 0, 123, 1, 1);
+(1, 0, 123, 1, 1),
+(6, 100, 1213, 5, 1),
+(7, 100, 199, 12, 1),
+(9, 99.95, 1234, 11, 2),
+(12, 100, 20, 15, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Lista_desear`
+--
+
+CREATE TABLE `lista_desear` (
+  `id` int(11) NOT NULL,
+  `FK_Usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -146,12 +172,14 @@ CREATE TABLE `opinion` (
 
 INSERT INTO `opinion` (`id`, `mensaje`, `fecha`, `FK_Usuario`, `FK_Articulo`) VALUES
 (1, 'Transaccion perfecta!', '2017-01-02', 1, 1),
-(2, '1111', '2017-01-04', 1, 1);
+(2, '1111', '2017-01-04', 1, 1),
+(9, 'hola que ase', '2017-01-25', 2, 2),
+(10, 'hola que ase', '2017-01-25', 2, 2);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Pedido`
+-- Estructura de tabla para la tabla `pedido`
 --
 
 CREATE TABLE `pedido` (
@@ -161,16 +189,28 @@ CREATE TABLE `pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `Pedido`
+-- Volcado de datos para la tabla `pedido`
 --
 
 INSERT INTO `pedido` (`numpedido`, `fecha`, `FK_Usuario`) VALUES
-(1, '2017-01-11', 1);
+(1, '2017-01-11', 1),
+(5, '2017-01-25', 2),
+(6, '2017-01-25', 2),
+(7, '2017-01-25', 2),
+(8, '2017-01-25', 2),
+(9, '2017-01-25', 2),
+(10, '2017-01-25', 2),
+(11, '2017-01-25', 2),
+(12, '2017-01-25', 1),
+(13, '0000-00-00', 1),
+(14, '2017-01-25', 2),
+(15, '0000-00-00', 1),
+(16, '0000-00-00', 2);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Seccion`
+-- Estructura de tabla para la tabla `seccion`
 --
 
 CREATE TABLE `seccion` (
@@ -179,7 +219,7 @@ CREATE TABLE `seccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `Seccion`
+-- Volcado de datos para la tabla `seccion`
 --
 
 INSERT INTO `seccion` (`id`, `Nombre`) VALUES
@@ -221,7 +261,7 @@ INSERT INTO `sub_seccion` (`id`, `Nombre`, `FK_Seccion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -234,31 +274,37 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `Usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `Username`, `Password`, `Email`, `Telefono`, `admin`) VALUES
-(1, 'david', '1234', 'david@david.com', 12345, 0),
-(2, 'admin', 'admin', 'admin@ebay.es', 123123, 1);
+(1, 'david', '12341234', 'david@david.com', 12345, 0),
+(2, 'admin', 'admin', 'admin@ebay.es', 1234, 1);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `Articulos`
+-- Indices de la tabla `articulos`
 --
 ALTER TABLE `articulos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `Articulo_Usuario`
+-- Indices de la tabla `articulo_usuario`
 --
 ALTER TABLE `articulo_usuario`
   ADD PRIMARY KEY (`idArticulo`,`idUsuario`),
   ADD KEY `FK_Usuario` (`idUsuario`),
   ADD KEY `idArticulo` (`idArticulo`),
   ADD KEY `idArticulo_2` (`idArticulo`);
+
+--
+-- Indices de la tabla `Deseo_Articulos`
+--
+ALTER TABLE `deseo_Articulos`
+  ADD PRIMARY KEY (`FK_Articulos`,`FK_Lista_Desear`);
 
 --
 -- Indices de la tabla `direcciones`
@@ -279,20 +325,26 @@ ALTER TABLE `linea_pedido`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `Lista_desear`
+--
+ALTER TABLE `lista_desear`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `opinion`
 --
 ALTER TABLE `opinion`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `Pedido`
+-- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`numpedido`),
   ADD KEY `numpedido` (`numpedido`);
 
 --
--- Indices de la tabla `Seccion`
+-- Indices de la tabla `seccion`
 --
 ALTER TABLE `seccion`
   ADD PRIMARY KEY (`id`);
@@ -314,7 +366,7 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `Articulos`
+-- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
@@ -322,7 +374,7 @@ ALTER TABLE `articulos`
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
@@ -332,19 +384,24 @@ ALTER TABLE `imagenes`
 -- AUTO_INCREMENT de la tabla `linea_pedido`
 --
 ALTER TABLE `linea_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT de la tabla `Lista_desear`
+--
+ALTER TABLE `lista_desear`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT de la tabla `Pedido`
+-- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `numpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `numpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
--- AUTO_INCREMENT de la tabla `Seccion`
+-- AUTO_INCREMENT de la tabla `seccion`
 --
 ALTER TABLE `seccion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
@@ -354,7 +411,7 @@ ALTER TABLE `seccion`
 ALTER TABLE `sub_seccion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT de la tabla `Usuario`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;

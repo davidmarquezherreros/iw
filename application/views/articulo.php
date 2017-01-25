@@ -100,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	else{
 	?>
 		<img class="imagen" src="<?php echo base_url("assets/img/image-not-found.jpg");?>">
-	<?php	
+	<?php
 	}
 	?>
 	<h1><a href="#"><?=$articulo->Nombre?></a></h1>
@@ -122,6 +122,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  <div class="alert alert-danger" id="errorCantidad">
 	 <strong>Error!</strong> Cantidad introducida incorrecta!
  </div>
+ <?php
+	 $url = site_url('deseos/anyadir');
+	 echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\"></span> Añadir a la lista de deseos</a>";
+	?>
 	<div class="row">
 		<?php
 			if(sizeof($opiniones)!=0)
