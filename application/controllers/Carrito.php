@@ -39,7 +39,7 @@ class Carrito extends CI_Controller {
 	public function index()
 	{
 		$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
-		$pedido = $this->Pedido_m->get_pedido_fecha_usuario("",$usuario);
+		$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
 		if(count($pedido)>0){
 			$pedido = $pedido[0]->numpedido;
 		}
@@ -59,7 +59,7 @@ class Carrito extends CI_Controller {
 			$cantidad = $this->input->post('cantidad');
 			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
 			// Miramos si el usuario tiene ya una cesta activa
-			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("",$usuario)[0]->numpedido;
+			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario)[0]->numpedido;
 			if(count($pedido)==0){ // No tiene pedidos sin completar por lo tanto creamos uno
 				$pedido = $this->Pedido_m->insert_pedido_usuario($usuario);
 			}
@@ -83,7 +83,7 @@ class Carrito extends CI_Controller {
 		}
 		else{
 			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
-			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("",$usuario);
+			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
 			$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
 			$this->Linea_pedido_m->update_linea_pedido($linea[0]->id,$linea[0]->cantidad+1);
 			redirect("carrito");
@@ -96,7 +96,7 @@ class Carrito extends CI_Controller {
 		}
 		else{
 			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
-			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("",$usuario);
+			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
 			$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
 			if($linea[0]->cantidad==1){
 				$this->Linea_pedido_m->delete_linea_pedido($linea[0]->id);
@@ -114,7 +114,7 @@ class Carrito extends CI_Controller {
 		}
 		else{
 			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
-			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("",$usuario);
+			$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
 			$linea=$this->Linea_pedido_m->get_linea_pedido($_GET['articulo'],$pedido[0]->numpedido);
 			$this->Linea_pedido_m->delete_linea_pedido($linea[0]->id);
 			redirect("carrito");
@@ -124,7 +124,7 @@ class Carrito extends CI_Controller {
 	// Boton comprar
 	public function comprar(){
 		$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
-		$pedido = $this->Pedido_m->get_pedido_fecha_usuario("",$usuario);
+		$pedido = $this->Pedido_m->get_pedido_fecha_usuario("0000-00-00",$usuario);
 		$this->Pedido_m->update_pedido($pedido[0]->numpedido,date("Y/m/d"));
 	}
 }
