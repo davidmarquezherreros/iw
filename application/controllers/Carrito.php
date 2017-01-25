@@ -78,8 +78,9 @@ class Carrito extends CI_Controller {
 	// Acciones del listado del carrito
 	// + 1
 	public function up(){
-		if($_GET['articulo']==""){
-			redirect("carrito");
+		if(is_numeric($_GET['articulo'])==false){
+			$data["mensaje"]="El id pasado como parametro no es valido";
+			$this->load->view('error',$data);
 		}
 		else{
 			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
@@ -91,8 +92,9 @@ class Carrito extends CI_Controller {
 	}
 	// - 1
 	public function down(){
-		if($_GET['articulo']==""){
-			redirect("carrito");
+		if(is_numeric($_GET['articulo'])==false){
+			$data["mensaje"]="El id pasado como parametro no es valido";
+			$this->load->view('error',$data);
 		}
 		else{
 			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
@@ -109,8 +111,9 @@ class Carrito extends CI_Controller {
 	}
 	// Borrar articulo
 	public function delete(){
-		if($_GET['articulo']==""){
-			redirect("carrito");
+		if(is_numeric($_GET['articulo'])==false){
+			$data["mensaje"]="El id pasado como parametro no es valido";
+			$this->load->view('error',$data);
 		}
 		else{
 			$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;

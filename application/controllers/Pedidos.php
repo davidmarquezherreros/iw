@@ -50,7 +50,8 @@ class Pedidos extends CI_Controller {
 			$this->load->view('detallepedido',$data);
 		}
 		else{
-			echo 'redirect pagina error';
+			$data['mensaje']="El numero de pedido pasado por parametro no es valido";
+			$this->load->view('error',$data);
 		}
 	}
 }
