@@ -11,6 +11,7 @@
          $this->load->model("articulo_m", '', TRUE);
          $this->load->model("seccion_m", '', TRUE);
          $this->load->model("opinion_m", '', TRUE);
+         $this->load->model("Lista_desear_m", '', TRUE);
 
       }
 
@@ -23,9 +24,11 @@
       }
 
       public function verArticulo($id){
+          $usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
          $data['secciones'] = $this->seccion_m->get_secciones();
          $data['articulo']=$this->articulo_m->get_articulo($id);
          $data['opiniones']=$this->opinion_m->get_articulo_opiniones($id);
+         $data['deseado']=$this->Lista_desear_m->get_deseo_articulo_usuario($id,$usuario);
          $this->load->view('articulo', $data);
       }
 

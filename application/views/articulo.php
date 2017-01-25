@@ -123,8 +123,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 <strong>Error!</strong> Cantidad introducida incorrecta!
  </div>
  <?php
-	 $url = site_url('deseos/anyadir');
-	 echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\"></span> Añadir a la lista de deseos</a>";
+ 	if(is_null($deseado)==true){
+		 $url = site_url('deseos/anyadir');
+		 echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\"></span> Añadir a la lista de deseos</a>";
+	}
+	else{
+		$url = site_url('deseos/eliminar');
+		echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\"></span> Ya en tu lista </a>";
+	}
 	?>
 	<div class="row">
 		<?php
