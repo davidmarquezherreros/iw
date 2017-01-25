@@ -13,6 +13,13 @@
 
 		}
 
+		function get_all_username($username){
+			$this->db->select('*');
+			$this->db->where('UserName', $username);
+			return $this->db->get("Usuario")->result();
+
+		}
+
 		function count_all() {
 			return $this->db->count_all("usuario");
 		}
@@ -42,6 +49,22 @@
 			$this->db->select('id');
 			$this->db->where('Username', $username);
 			return $this->db->get("Usuario")->result();
+		}
+
+		function update_usuario_password($username,$password,$email,$telefono){
+			$this->db->where('Username', $username);
+			$this->db->set('Email',$email);
+			$this->db->set('Password',$password);
+			$this->db->set('Telefono',$telefono);
+			$this->db->update('Usuario');
+			return true;
+		}
+		function update_usuario($username,$email,$telefono){
+			$this->db->where('Username', $username);
+			$this->db->set('Email',$email);
+			$this->db->set('Telefono',$telefono);
+			$this->db->update('Usuario');
+			return true;
 		}
 	}
 ?>
