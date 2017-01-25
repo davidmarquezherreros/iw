@@ -33,6 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						 echo "<h4>Ciudad: ".$direccion->Ciudad." </h4>";
 						 echo "<h4>Comunidad autonoma: ".$direccion->ComunidadAutonoma." </h4>";
 						 echo "<h4>Direccion: ".$direccion->Direccion." </h4>";
+						 echo "<h4>Codigo postal: ".$direccion->CodigoPostal." </h4>";
 						 echo "<h4>Telefono: ".$direccion->Telefono." </h4>";
 						 echo "<a href=".site_url('perfil/modificar_direccion')."?id=".$direccion->id."><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></a>";
 						 echo " <a href=".site_url('perfil/borrar_direccion')."?id=".$direccion->id."><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a>";
@@ -40,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						 echo	"</div>";
 						 $posicion++;
 				 	 }
+					 echo " <a href=".site_url('perfil/modificar_direccion')."?id=-1><span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span> Añadir nueva direccion</a>";
 
 				 }
 				 else{ // datos cuenta

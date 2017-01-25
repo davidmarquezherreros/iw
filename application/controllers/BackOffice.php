@@ -136,7 +136,7 @@ class BackOffice extends CI_Controller {
 			$crud->set_theme("flexigrid");
 			$crud->set_table('direcciones');
 			$crud->set_subject('Direccion');
-			$crud->columns('id','Pais','Direccion','CodigoPostal','ComunidadAutonoma','Telefono', 'FK_Usuario');
+			$crud->columns('id','Pais','Ciudad','Direccion','CodigoPostal','ComunidadAutonoma','Telefono', 'FK_Usuario');
 			$output = $crud->render();
 			$this->load->view('backoffice', $output);
 		}

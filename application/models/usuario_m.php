@@ -56,15 +56,13 @@
 			$this->db->set('Email',$email);
 			$this->db->set('Password',$password);
 			$this->db->set('Telefono',$telefono);
-			$this->db->update('Usuario');
-			return true;
+			return $this->db->update('usuario');
 		}
 		function update_usuario($username,$email,$telefono){
 			$this->db->where('Username', $username);
 			$this->db->set('Email',$email);
 			$this->db->set('Telefono',$telefono);
-			$this->db->update('Usuario');
-			return true;
+			return $this->db->update('usuario');
 		}
 	}
 ?>

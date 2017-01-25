@@ -57,24 +57,102 @@ class Perfil extends CI_Controller {
 	}
 	public function modificado(){
 		if(count($_POST)==0){
-			echo "redirect pagina de error";
+			$data['mensaje']="Ha habido un fallo al intentar modificar el perfil, el evento POST tenia 0 argumentos.";
+			$this->load->view('error',$data);
 		}
 		else{
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			$email = $this->input->post('email');
 			$telefono = $this->input->post('telefono');
-			echo $username;
-			echo $password;
-			echo $email;
-			echo $telefono;
 			if($password != ""){
 				$this->usuario_m->update_usuario_password($username,$password,$email,$telefono);
 			}
 			else{
-				$this->usuario_m->update_usuario($username,$password,$email,$telefono);
+				$this->usuario_m->update_usuario($username,$email,$telefono);
 			}
 			redirect("perfil");
+		}
+	}
+	public function modificar_direccion(){
+		$id = $_GET['id'];
+		if(is_numeric($id)==false){
+			$data['mensaje']="El id pasado como parametro no es valido";
+			$this->load->view('error',$data);
+		}
+		else{
+			if($id==-1){ // Crear direccion
+				$data['operacion']="crear";
+				$this->load->view('modificardireccion',$data);
+			}
+			else{ // Modificar
+				$direccion = $this->Direcciones_m->get_all_id($id);
+				if(count($direccion)>0){
+					$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
+					if($direccion[0]->FK_Usuario != $usuario){ // Comprobamos que la direccion le pertenece
+						$data['mensaje']="Esta direccion no te pertenece!";
+						$this->load->view('error',$data);
+					}else{
+						$data['operacion']="modificar";
+						$data['datos']=$direccion;
+						$this->load->view('modificardireccion',$data);
+					}
+				}
+				else{
+					$data['mensaje']="Esta direccion no te existe!";
+					$this->load->view('error',$data);
+				}
+
+			}
+		}
+	}
+	public function borrar_direccion(){
+		$id = $_GET['id'];
+		if(is_numeric($id)==false){
+			$data['mensaje']="El id pasado como parametro no es valido";
+			$this->load->view('error',$data);
+		}
+		else{
+			$this->Direcciones_m->delete_id($id);
+			$this->direcciones();
+		}
+	}
+
+	public function modificado_direccion(){
+		$id = $_POST['id'];
+		if(count($_POST)==0){
+			$data['mensaje']="Ha habido un error en la solicitud el evento POST envio 0 argumentos";
+			$this->load->view('error',$data);
+		}
+		else{
+			$pais = $this->input->post('pais');
+			$ciudad = $this->input->post('ciudad');
+			$comunidad = $this->input->post('comunidad');
+			$direccionaux = $this->input->post('direccion');
+			$telefono = $this->input->post('telefono');
+			$postal = $this->input->post('postal');
+			if($id==-1){ // Crear direccion
+				$FK_Usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
+				$this->Direcciones_m->insert_direccion_usuario($pais, $ciudad, $comunidad, $direccionaux, $telefono, $postal, $FK_Usuario);
+				$this->direcciones();
+			}
+			else{ // Modificar
+				$direccion = $this->Direcciones_m->get_all_id($id);
+				if(count($direccion)>0){
+					$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
+					if($direccion[0]->FK_Usuario != $usuario){ // Comprobamos que la direccion le pertenece
+						$data['mensaje']="Esta direccion no te pertenece!";
+						$this->load->view('error',$data);
+					}else{
+						$this->Direcciones_m->update_direccion_usuario($id,$pais, $ciudad, $comunidad, $direccionaux, $telefono, $postal);
+						$this->direcciones();
+					}
+				}
+				else{
+					$data['mensaje']="Esta direccion no te existe!";
+					$this->load->view('error',$data);
+				}
+			}
 		}
 	}
 

@@ -6,6 +6,12 @@
 			return $this->db->get("Pedido")->result();
 		}
 
+		function get_all_numpedido($numpedido) {
+			$this->db->select('*');
+			$this->db->where('numpedido', $numpedido);
+			return $this->db->get("Pedido")->result();
+		}
+
 		function get_pedido_fecha_usuario($fecha,$usuario){
 			$this->db->select('numpedido,fecha,FK_Usuario');
 			$this->db->where('fecha', $fecha);
