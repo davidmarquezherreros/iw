@@ -18,17 +18,6 @@
 			return  $insert_id;
 		}
 
-		function eliminar_lista_desear($FK_Articulos, $FK_Lista){
-			$data = array(
-				'FK_Articulos'	=> $FK_Articulos,
-				'FK_Lista_Desear'	=> $FK_Lista,
-			);
-
-			$this->db->where($data);
-			$this->db->delete('deseo_articulos',$data);
-			return true;
-		}
-
 		function get_deseo_articulo_usuario($articulo,$FK_Usuario) {
 			$query = $this->db->query("SELECT * FROM deseo_articulos, lista_desear, usuario, articulos WHERE deseo_articulos.FK_Articulos='$articulo' AND lista_desear.FK_Usuario='$FK_Usuario' AND lista_desear.id=deseo_articulos.FK_Lista_Desear AND articulos.id='$articulo' AND usuario.id='$FK_Usuario'");
 

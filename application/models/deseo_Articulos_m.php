@@ -23,5 +23,20 @@
 			$insert_id = $this->db->insert_id();
 			return  $insert_id;
 		}
+		function eliminar_lista_desear($FK_Articulos, $FK_Lista){
+			$data = array(
+				'FK_Articulos'	=> $FK_Articulos,
+				'FK_Lista_Desear'	=> $FK_Lista,
+			);
+
+			$this->db->where($data);
+			$this->db->delete('deseo_articulos',$data);
+			return true;
+		}
+		function get_lista_deseo_articulos_usuario($FK_Usuario) {
+			$query = $this->db->query("SELECT articulos.nombre, articulos.precio, articulos.id FROM deseo_articulos, lista_desear, usuario, articulos WHERE lista_desear.FK_Usuario='$FK_Usuario' AND lista_desear.id=deseo_articulos.FK_Lista_Desear AND usuario.id='$FK_Usuario' AND articulos.id=deseo_articulos.FK_Articulos");
+
+			return $query->result();
+		}
 	}
 ?>

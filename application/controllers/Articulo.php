@@ -24,11 +24,14 @@
       }
 
       public function verArticulo($id){
+        $sesion = $this->session->userdata('usuarioLogueado');
+         if($sesion!=""){
           $usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
+          $data['deseado']=$this->Lista_desear_m->get_deseo_articulo_usuario($id,$usuario);
+        }
          $data['secciones'] = $this->seccion_m->get_secciones();
          $data['articulo']=$this->articulo_m->get_articulo($id);
          $data['opiniones']=$this->opinion_m->get_articulo_opiniones($id);
-         $data['deseado']=$this->Lista_desear_m->get_deseo_articulo_usuario($id,$usuario);
          $this->load->view('articulo', $data);
       }
 

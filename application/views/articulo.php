@@ -37,11 +37,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 ?>
 		</div>
 	</div>
+	<div class="row">
 	<?php
 	$numImagenes = $this->articulo_m->get_count_imagenes($articulo->id);
 	if($numImagenes!=0){
 	?>
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 50px;">
+	<div id="myCarousel" class="carousel slide col-sm-5 col-lg-5 col-md-5" data-ride="carousel" style="margin-bottom: 50px;margin-left: 15px;">
 		<!-- Indicators -->
 	    <ol class="carousel-indicators">
 	    	<?php
@@ -99,15 +100,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	}
 	else{
 	?>
-		<img class="imagen" src="<?php echo base_url("assets/img/image-not-found.jpg");?>">
+		<div id="imagen" style="margin-bottom: 50px; margin-left: 15px;">
+			<img class="col-sm-5 col-lg-5 col-md-5" src="<?php echo base_url("assets/img/image-not-found.jpg");?>">
+		</div>
 	<?php
 	}
 	?>
+	<div class="col-sm-4 col-lg-4 col-md-4" style="margin-left: 50px;">
 	<h1><a href="#"><?=$articulo->Nombre?></a></h1>
-	<p>
-		<?=$articulo->Descripcion?>
-	</p>
-	<h3> <?=$articulo->Precio?>€</h3>
+	<h3>Precio <?=$articulo->Precio?>€</h3>
 	<form action="/iw/index.php/carrito/addcarrito" method ="post">
 		<div class="panel panel-default" style="width=50%;">
 			<div class="panel-heading">
@@ -123,20 +124,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 <strong>Error!</strong> Cantidad introducida incorrecta!
  </div>
  <?php
+ 	$sesion = $this->session->userdata('usuarioLogueado');
+ 	if($sesion!=""){
  	if(is_null($deseado)==true){
 		 $url = site_url('deseos/anyadir');
 		 echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\"></span> Añadir a la lista de deseos</a>";
 	}
 	else{
 		$url = site_url('deseos/eliminar');
-		echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\"></span> Ya en tu lista </a>";
+		echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-heart-empty\" aria-hidden=\"true\"></span> Eliminar de la lista de deseos </a>";
+	}
 	}
 	?>
-	<div class="row">
+	 </div>
+ </div>
+
+	<div class="row" style=" margin-left: 0px;">
+	<h2>Descripcion</h2>
+ 	<p>
+		<?=$articulo->Descripcion?>
+	</p>
 		<?php
 			if(sizeof($opiniones)!=0)
 			{
 				echo "<legend>Opiniones</legend>";
+				$url = site_url('articulo/nuevaopinion');
+			echo "<div style=\"margin-bottom: 10px;\"><a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-comment\" aria-hidden=\"true\"></span> Nueva opinion</a></div>";
 				foreach($opiniones as $opinion) {
 		?>
 				<div class="panel panel-default" style="width=100px;">
@@ -160,10 +173,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?php
 			}
 		?>
-		<?php
-			$url = site_url('articulo/nuevaopinion');
-			echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-comment\" aria-hidden=\"true\"></span> Nueva opinion</a>";
-		 ?>
 	</div>
 </main>
 <?php

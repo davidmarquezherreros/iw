@@ -20,7 +20,7 @@ class Deseos extends CI_Controller {
 	 */
 		function __construct(){
 		 parent::__construct();
-
+		 $this->load->helper('url');
 		 $this->load->library('session');
 		 $this->load->model("Seccion_m", '', TRUE);
 		 $this->load->model("Articulo_m", '', TRUE);
@@ -43,7 +43,8 @@ class Deseos extends CI_Controller {
 			$this->Lista_desear_m->insertar_lista_desear($usuario);
 		}
 		else{
-			print_r($this->deseo_Articulos_m->get_all_id($lista[0]->id));
+			$data['lista']= $this->deseo_Articulos_m->get_lista_deseo_articulos_usuario($usuario);
+			$this->load->view('deseados', $data);
 		}
 	}
 
@@ -60,10 +61,15 @@ class Deseos extends CI_Controller {
 			else{ // Se puede añadir
 				$usuario = $this->usuario_m->get_id_username($this->session->userdata('usuarioLogueado'))[0]->id;
 				$FK_Articulos = $_GET["articulo"];
+				$lista = $this->Lista_desear_m->get_all_id($usuario);
+				if(count($lista)==0){
+					$this->Lista_desear_m->insertar_lista_desear($usuario);
+				}
 				$FK_Lista_desear = $lista = $this->Lista_desear_m->get_all_id($usuario)[0]->id;
 				$item = $this->deseo_Articulos_m->get_item_id($FK_Articulos, $FK_Lista_desear);
 				if(count($item)==0){
 					$this->deseo_Articulos_m->insertar_articulo($FK_Articulos, $FK_Lista_desear);
+					$this->index();
 				}
 				else{
 					echo "<script>  alert('Este articulo ya esta en tu lista');
@@ -92,13 +98,13 @@ class Deseos extends CI_Controller {
 				$FK_Lista_desear = $lista = $this->Lista_desear_m->get_all_id($usuario)[0]->id;
 				$item = $this->deseo_Articulos_m->get_item_id($FK_Articulos, $FK_Lista_desear);
 				if(count($item)==0){
-					echo "<script>  alert('Este articulo ya esta en tu lista');
+					echo "<script>  alert('Este articulo no esta en tu lista');
 									window.location.href = '/iw/index.php/deseos/';
 							 </script>"
 					;
 				}
 				else{
-					$this->Lista_desear_m->eliminar_lista_desear($item[0]->FK_Articulos, $item[0]->FK_Lista_Desear);
+					$this->deseo_Articulos_m->eliminar_lista_desear($item[0]->FK_Articulos, $item[0]->FK_Lista_Desear);
 					echo "<script>  window.location.href = '/iw/index.php/articulo/verArticulo/" . $FK_Articulos .  "';
 				   </script>"
 				;

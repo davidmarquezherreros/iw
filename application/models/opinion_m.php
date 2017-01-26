@@ -9,7 +9,7 @@
 		}
 
 		function get_articulo_opiniones($id){
-			$query = $this->db->query('SELECT mensaje, fecha, FK_Usuario FROM Opinion WHERE FK_Articulo='. $id);
+			$query = $this->db->query('SELECT mensaje, fecha, FK_Usuario FROM Opinion WHERE FK_Articulo='. $id .' ORDER BY id DESC ');
 			return $query->result();
 		}
 
