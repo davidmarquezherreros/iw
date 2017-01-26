@@ -15,6 +15,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 ?>
 		</div>
 		<div id="buscador">
+			<?php
+				$this->load->view('inc/buscador.php');
+			 ?>
 		</div>
 		<div id="secciones">
 			<?php

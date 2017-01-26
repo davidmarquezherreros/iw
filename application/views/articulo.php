@@ -6,8 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$this->load->view('inc/head.php');
  ?>
 <main class="container">
-	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.min.js"); ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
 	<!-- START SCRIPTS -->
 	<script type="text/javascript">
 		$(document).ready(function(e) {
@@ -30,6 +28,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 ?>
 		</div>
 		<div id="buscador">
+			<?php
+				$this->load->view('inc/buscador.php');
+			 ?>
 		</div>
 		<div id="secciones">
 			<?php

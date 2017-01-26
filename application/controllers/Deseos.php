@@ -41,6 +41,8 @@ class Deseos extends CI_Controller {
 		$lista = $this->Lista_desear_m->get_all_id($usuario);
 		if(count($lista)==0){
 			$this->Lista_desear_m->insertar_lista_desear($usuario);
+			$data['lista']= $this->deseo_Articulos_m->get_lista_deseo_articulos_usuario($usuario);
+			$this->load->view('deseados', $data);
 		}
 		else{
 			$data['lista']= $this->deseo_Articulos_m->get_lista_deseo_articulos_usuario($usuario);

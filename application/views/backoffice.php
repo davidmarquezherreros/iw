@@ -11,24 +11,20 @@ foreach($css_files as $file): ?>
 
     <script src="<?php echo $file; ?>"></script>
 <?php endforeach; ?>
-<head>
-	<meta charset="utf-8">
-	<title>ebay</title>
-	<link rel="icon" href="<?php echo base_url("assets/favicon.ico"); ?>" type="image/gif">
-	<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
-	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" />
-</head>
-<body>
+<?php
+  $this->load->view('inc/head.php');
+ ?>
+<body class="container">
 	<div id="container">
 		<div id="menu">
 			<?php
 				$this->load->view('inc/menu.php');
 			 ?>
 		</div>
-    <div id="titulo" style="min-width=480px; margin: auto; width: 80%;">
+    <div id="titulo" style="min-width=480px; margin: auto; width: 90%;">
       <h2>Panel de administracion</h2>
     </div>
-		<div id="backoffice" style="min-width=480px; margin: auto; width: 80%;">
+		<div id="backoffice" style="min-width=480px; margin: auto; width: 90%;">
       <nav class="navbar navbar-default">
           <ul class="nav navbar-nav">
             <li class="active"><a href='<?php echo site_url('backoffice/Usuarios')?>'>Usuarios</a></li>

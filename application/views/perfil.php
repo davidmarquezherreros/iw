@@ -7,7 +7,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$this->load->view('inc/head.php');
  ?>
 <main class="container">
-	<link rel="stylesheet" href="<?php echo base_url("assets/css/shop-homepage.css"); ?>" />
 	<div id="container">
 		<div id="menu">
 			<?php
