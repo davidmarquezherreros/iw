@@ -16,6 +16,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 	<div id="backoffice" style="min-width=480px; margin: auto; width: 80%;">
+		<div id="titulo">
+			<h2>Mi perfil</h2>
+		</div>
 		<nav class="navbar navbar-default">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href='<?php echo site_url('perfil/cuenta')?>'>Datos personales</a></li>

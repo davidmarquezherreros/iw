@@ -23,9 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="form-group" style="min-width=480px; margin: auto; width: 50%;">
 					<?php
 							if($operacion=="crear"){
+								echo "<h2>Añadir direccion </h2>";
 								echo "<input type=\"text\" class=\"form-control\" name=\"id\" value=\"-1\" hidden=\"true\" id=\"input_id\">";
 							}
 							else{
+								echo "<h2>Editar direccion </h2>";
 								echo "<input type=\"text\" class=\"form-control\" name=\"id\" value=".$datos[0]->id." hidden=\"true\" id=\"input_id\">";
 							}
 					?>

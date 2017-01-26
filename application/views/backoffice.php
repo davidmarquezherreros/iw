@@ -25,6 +25,9 @@ foreach($css_files as $file): ?>
 				$this->load->view('inc/menu.php');
 			 ?>
 		</div>
+    <div id="titulo" style="min-width=480px; margin: auto; width: 80%;">
+      <h2>Panel de administracion</h2>
+    </div>
 		<div id="backoffice" style="min-width=480px; margin: auto; width: 80%;">
       <nav class="navbar navbar-default">
           <ul class="nav navbar-nav">

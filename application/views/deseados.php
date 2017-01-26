@@ -19,6 +19,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 		<br />
+		<div id="titulo">
+			<h2>Mi lista de deseos</h2>
+		</div>
 		<div id="items">
 			<table class="table table-striped" style="width:100%">
 				<tr>
@@ -33,11 +36,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						$url = site_url('deseos/eliminar');
 						$detalles = "<td><a href=".site_url('articulo/verArticulo/').$articulo->id."><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></a>
 							<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-heart-empty\" aria-hidden=\"true\"></span></a>
-						</td></tr>";	
+						</td></tr>";
 						echo $detalles;
 					}
 			 ?>
-			 
+
 		 </table>
 		</div>
 

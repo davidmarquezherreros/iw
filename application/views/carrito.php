@@ -19,6 +19,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 		<br />
+		<div id="titulo">
+			<h2>Mi cesta de la compra</h2>
+		</div>
 		<div id="items">
 			<div id="lineas" style="width:70%; float:left;">
 			<table class="table table-striped" style="width:100%">

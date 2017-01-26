@@ -19,6 +19,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			  ?>
 		</div>
 		<main>
+			<div id="titulo" style="min-width=480px; margin: auto; width: 50%;">
+				<h2>Editar mi perfil</h2>
+			</div>
 			<form action="/iw/index.php/perfil/modificado" method ="post">
 				<div class="form-group" style="min-width=480px; margin: auto; width: 50%;">
 					<label for="username">Usuario:</label>
