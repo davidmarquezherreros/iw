@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="http://c.fzilla.com/1291523190-jpaginate.js"></script>  
 	<script>  
 	$(document).ready(function(){  
-			$("#content").jPaginate({items: 6, next: "Siguiente", previous: "Anterior", paginaton_class: "myownclass"});          
+			$("#content").jPaginate({items: 9, next: "Siguiente", previous: "Anterior", paginaton_class: "myownclass"});          
 	});  
 	</script>
 	<?php
