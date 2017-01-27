@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-01-2017 a las 08:26:37
+-- Tiempo de generación: 27-01-2017 a las 12:14:49
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -47,7 +47,16 @@ INSERT INTO `articulos` (`id`, `Nombre`, `Descripcion`, `Precio`, `FK_Seccion`, 
 (10, 'NIKE STRIKE - LFP 17', 'Balón fútbol que cuenta con una cámara de aire de goma y un llamativo estampado en contraste para ofrecer un tacto uniforme y facilitar su seguimiento visual.', 25.99, 6, 25),
 (11, 'Death Star Lego Star Wars', '\r\n\r\nModelo: 75159', 505, 7, 28),
 (12, 'Coleccion de monedas', 'Monedas variadas', 134.95, 8, 31),
-(13, 'Aceite de Oliva Virgen Extra', '5 Litros.', 24.25, 9, 34);
+(13, 'Aceite de Oliva Virgen Extra', '5 Litros.', 24.25, 9, 34),
+(14, 'IPhone 7', 'Telefono de apple 128Gb', 839, 2, 1),
+(15, 'IPhone 6s', 'Telefono de apple 16Gb', 609, 2, 1),
+(16, 'IPhone 5s', 'Telefono de apple 16Gb', 319, 2, 1),
+(17, 'IPhone SE', 'Telefono de apple 64Gb', 499, 2, 1),
+(18, 'ZTE Blade L5 Plus', 'Blanco Libre', 69.95, 2, 1),
+(19, 'ZTE Blade L5', 'Gris Libre', 59.95, 2, 1),
+(20, 'Bq Aquaris U Lite', '4G 2GB/16GB Negro Libre', 139, 2, 1),
+(21, 'Leotec Titanium', '2T355 4G 16GB Blanco', 99.95, 2, 1),
+(22, 'LG K5', '8GB Negro Libre', 119, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +147,20 @@ INSERT INTO `imagenes` (`id`, `imagen`, `titulo`, `FK_Imagen_Articulo`) VALUES
 (14, 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSw4557iyhH2J8VLDrtTnb43SEPDYdMt5irmH50IGZHdAQF4H3d', 'Imagen 1', 11),
 (15, 'https://i0.wp.com/elcatalejo.es/wp-content/uploads/2016/09/75159c.jpg', 'Imagen 2', 11),
 (16, 'http://cloud10.todocoleccion.online/monedas-antiguas-europa/tc/2011/01/26/24288647.jpg', 'Imagen 1', 12),
-(17, 'http://www.orodelguadalquivir.com/65-large_default/garrafa-5-litros-aceite-de-oliva-virgen-extra.jpg', 'Imagen 1', 13);
+(17, 'http://www.orodelguadalquivir.com/65-large_default/garrafa-5-litros-aceite-de-oliva-virgen-extra.jpg', 'Imagen 1', 13),
+(18, 'https://thumb.pccomponentes.com/w-530-530/articles/6/62275/apple-iphone-5s-16gb-silver-libre.jpg', 'Imagen 1', 16),
+(19, 'https://thumb.pccomponentes.com/w-530-530/articles/8/88944/apple-iphone-6s-16gb-rosa-dorado.jpg', 'Imagen 1', 15),
+(20, 'https://thumb.pccomponentes.com/w-530-530/articles/8/88944/apple-iphone-6s-16gb-rosa-dorado-1.jpg', 'Imagen 2', 15),
+(21, 'https://thumb.pccomponentes.com/w-530-530/articles/10/104224/7.jpg', 'Imagen 1', 14),
+(22, 'https://thumb.pccomponentes.com/w-530-530/articles/10/104224/8.jpg', 'Imagen 2', 14),
+(23, 'https://thumb.pccomponentes.com/w-530-530/articles/9/97737/apple-iphone-se-16gb-gris-espacial.jpg', 'Imagen 1', 17),
+(24, 'https://thumb.pccomponentes.com/w-530-530/articles/9/97737/apple-iphone-se-16gb-gris-espacial-3.jpg', 'Imagen 2', 17),
+(25, 'https://thumb.pccomponentes.com/w-530-530/articles/9/97737/apple-iphone-se-16gb-gris-espacial-2.jpg', 'Imagen 3', 17),
+(26, 'https://thumb.pccomponentes.com/w-530-530/articles/11/116090/1.jpg', 'Imagen 1', 22),
+(27, 'https://thumb.pccomponentes.com/w-530-530/articles/10/105839/1.jpg', 'Imagen 1', 18),
+(28, 'https://thumb.pccomponentes.com/w-530-530/articles/10/107700/a04.jpg', 'Imagen 1', 19),
+(29, 'https://thumb.pccomponentes.com/w-530-530/articles/10/107124/1.jpg', 'Imagen 1', 20),
+(30, 'https://thumb.pccomponentes.com/w-530-530/articles/10/105013/lesph5507k-a.jpg', 'Imagen 1', 21);
 
 -- --------------------------------------------------------
 
@@ -201,7 +223,8 @@ CREATE TABLE `opinion` (
 --
 
 INSERT INTO `opinion` (`id`, `mensaje`, `fecha`, `FK_Usuario`, `FK_Articulo`) VALUES
-(11, 'Funciona muy bien!', '2017-01-27', 6, 6);
+(11, 'Funciona muy bien!', '2017-01-27', 6, 6),
+(12, 'Funciona de maravilla!', '2017-01-27', 2, 6);
 
 -- --------------------------------------------------------
 
@@ -415,7 +438,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
@@ -425,7 +448,7 @@ ALTER TABLE `direcciones`
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT de la tabla `linea_pedido`
 --
@@ -440,7 +463,7 @@ ALTER TABLE `lista_desear`
 -- AUTO_INCREMENT de la tabla `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
