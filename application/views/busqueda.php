@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  ?>
 <main class="container">
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/shop-homepage.css"); ?>" />
+	<link rel="stylesheet" href="<?php echo base_url("assets/css/paginar.css"); ?>" />
 	<div id="container">
 		<div id="menu">
 			<?php
@@ -26,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<h1>Resultados de buscar <strong><?=$_GET['search_query']?></strong></h1>
 	<div class="numresultados"><h3><?=$cuantosarticulos?> resultados</h3></div>
-	<div class="row">
+	<div id="content" class="row">
 		<?php
 			if(sizeof($articulos)!=0)
 			{
@@ -88,7 +89,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		?>
 	</div>
-
+<script src="http://c.fzilla.com/1286136086-jquery.js"></script>  
+	<script src="http://c.fzilla.com/1291523190-jpaginate.js"></script>  
+	<script>  
+	$(document).ready(function(){  
+			$("#content").jPaginate({items: 6, next: "Siguiente", previous: "Anterior", paginaton_class: "myownclass"});          
+	});  
+	</script>
 </main>
 <?php
 	$this->load->view('inc/pie.php')

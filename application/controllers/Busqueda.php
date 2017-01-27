@@ -27,6 +27,9 @@ class Busqueda extends CI_Controller {
 
 		$data['articulos']=$this->Busqueda_m->get_search_all($buscado);
 		$data['cuantosarticulos']=$this->Busqueda_m->count_search_all($buscado);
+		// Si paginamos haciendo peticiones por cada pagina
+		$data['articulosporpagina']=6;
+		$data['cuantosarticulospag']=$this->Busqueda_m->count_search_pag(0, 6);
 		$data['secciones'] = $this->seccion_m->get_secciones();
 		$this->load->view('busqueda', $data);
 	}
