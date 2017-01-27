@@ -28,7 +28,7 @@ foreach($css_files as $file): ?>
     <div id="titulo" style="min-width=480px; margin: auto; width: 90%;">
       <h2>Panel de administracion</h2>
     </div>
-		<div id="backoffice" style="min-width=480px; margin: auto; width: 90%;">
+		<div id="backoffice" style="min-width=480px; margin: auto; width: 100%;">
       <nav class="navbar navbar-default">
           <ul class="nav navbar-nav">
             <li class="active"><a href='<?php echo site_url('backoffice/Usuarios')?>'>Usuarios</a></li>
@@ -40,7 +40,8 @@ foreach($css_files as $file): ?>
             <li class="active"><a href='<?php echo site_url('backoffice/lineapedidos')?>'>Linea pedido</a></li>
             <li class="active"><a href='<?php echo site_url('backoffice/articulos')?>'>Articulos</a></li>
             <li class="active"><a href='<?php echo site_url('backoffice/imagenes')?>'>Imagenes</a></li>
-            <li class="active"><a href='<?php echo site_url('backoffice/articulosusuario')?>'>Articulos usuario</a></li>
+            <li class="active"><a href='<?php echo site_url('backoffice/lista_desear')?>'>Lista deseos</a></li>
+            <li class="active"><a href='<?php echo site_url('backoffice/deseo_articulos')?>'>Deseo Articulos</a></li>
           </ul>
       </nav>
 			<?php echo $output; ?>

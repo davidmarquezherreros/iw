@@ -140,11 +140,20 @@ class BackOffice extends CI_Controller {
 			$output = $crud->render();
 			$this->load->view('backoffice', $output);
 		}
-		public function articulosusuario(){
+		public function deseo_Articulos(){
 			$crud = new grocery_CRUD();
 			$crud->set_theme("flexigrid");
-			$crud->set_table('articulo_usuario');
-			$crud->set_subject('Articulo usuario');
+			$crud->set_table('deseo_Articulos');
+			$crud->set_subject('Articulo deseado');
+			$output = $crud->render();
+			$this->load->view('backoffice', $output);
+		}
+		public function lista_desear(){
+			$crud = new grocery_CRUD();
+			$crud->set_theme("flexigrid");
+			$crud->set_table('lista_desear');
+			$crud->set_subject('Articulo deseado');
+			$crud->columns('id','FK_Usuario');
 			$output = $crud->render();
 			$this->load->view('backoffice', $output);
 		}

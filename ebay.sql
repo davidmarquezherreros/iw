@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-01-2017 a las 19:49:50
+-- Tiempo de generación: 27-01-2017 a las 08:26:37
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -40,8 +40,14 @@ CREATE TABLE `articulos` (
 --
 
 INSERT INTO `articulos` (`id`, `Nombre`, `Descripcion`, `Precio`, `FK_Seccion`, `FK_Sub_Seccion`) VALUES
-(1, 'Prueba backoffice', 'So guud', 100, 2, 1),
-(2, '123', '123', 99.95, 0, 0);
+(6, '3+32GB 5.0" XIAOMI Redmi', ' 	Radio, Sensor de identidad por huella dactilar, Videollamada, Cámara, Dual SIM, Email, Grabación de vídeo en 4K, MMS, Pantalla en color, Pantalla táctil', 154.99, 2, 1),
+(7, 'Alfombra de triangulos', 'Esta alfombra con estampado geométrico añadirá un bonito toque de color y fantasía al suelo de una habitación o de un cuarto de baño.', 59.99, 3, 8),
+(8, 'Chaqueta Montaña Negra', 'Olvídate del frío con la chaqueta de montaña THE NORTH FACE que la marca te propone en color negro. Un diseño impermeable muy completo que incluye tejido DryVent impermeable, transpirable y costuras selladas.', 110.99, 4, 18),
+(9, 'Energy Sistem Car', 'Reproductor MP3 para coche con transmisor FM. Disfruta de tu música en la radio de tu coche sin cables y con multiconexión. Dispone de lector de tarjetas SD/SDHC, lector USB, entrada de línea para conectar tu reproductor.', 14.95, 5, 22),
+(10, 'NIKE STRIKE - LFP 17', 'Balón fútbol que cuenta con una cámara de aire de goma y un llamativo estampado en contraste para ofrecer un tacto uniforme y facilitar su seguimiento visual.', 25.99, 6, 25),
+(11, 'Death Star Lego Star Wars', '\r\n\r\nModelo: 75159', 505, 7, 28),
+(12, 'Coleccion de monedas', 'Monedas variadas', 134.95, 8, 31),
+(13, 'Aceite de Oliva Virgen Extra', '5 Litros.', 24.25, 9, 34);
 
 -- --------------------------------------------------------
 
@@ -54,23 +60,24 @@ CREATE TABLE `articulo_usuario` (
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `articulo_usuario`
---
-
-INSERT INTO `articulo_usuario` (`idArticulo`, `idUsuario`) VALUES
-(1, 1);
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Deseo_Articulos`
+-- Estructura de tabla para la tabla `deseo_Articulos`
 --
 
 CREATE TABLE `deseo_Articulos` (
   `FK_Articulos` int(11) NOT NULL,
   `FK_Lista_Desear` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `deseo_Articulos`
+--
+
+INSERT INTO `deseo_Articulos` (`FK_Articulos`, `FK_Lista_Desear`) VALUES
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -94,7 +101,9 @@ CREATE TABLE `direcciones` (
 --
 
 INSERT INTO `direcciones` (`id`, `Pais`, `Direccion`, `CodigoPostal`, `Ciudad`, `ComunidadAutonoma`, `Telefono`, `FK_Usuario`) VALUES
-(9, 'autofocus', 'autofocus', 0, 'autofocus', 'autofocus', 0, 1);
+(10, 'España', 'Universidad de Alicante', 0, 'Alicante', 'Alicante', 123456789, 2),
+(11, 'España', 'C/ Falsa Nº1', 2801, 'Madrid', 'Madrid', 987654321, 2),
+(12, 'España', 'C/ Falsa 123', 0, 'Alicante', 'Alicante', 123456789, 6);
 
 -- --------------------------------------------------------
 
@@ -114,7 +123,22 @@ CREATE TABLE `imagenes` (
 --
 
 INSERT INTO `imagenes` (`id`, `imagen`, `titulo`, `FK_Imagen_Articulo`) VALUES
-(1, 'probando back office', '1234', 1);
+(2, 'https://d2giyh01gjb6fi.cloudfront.net/phone_front/0001/28/thumb_27431_phone_front_big.jpeg', 'Imagen 1', 6),
+(3, 'http://xiaomimobile.cz/2376-large_default/xiaomi-redmi-3.jpg', 'Imagen 2', 6),
+(4, 'http://china-sale.com.ua/image/cache/data/Xiaomi/Redmi-3/Xiaomi-Redmi-3-01-300x300.jpg', 'Imagen 3', 6),
+(5, 'http://cdn.maisonsdumonde.com/img/alfombra-con-motivo-de-triangulos-de-algodon-120-x-180-cm-gaston-500-13-5-159864_5.jpg', 'Imagen 1', 7),
+(6, 'http://www.maisonsdumonde.com/img/alfombra-con-motivo-de-triangulos-de-algodon-120-x-180-cm-gaston-500-13-5-159864_3.jpg', 'Imagen 2', 7),
+(7, 'https://images.sprinter.es/539x539/products/0190300/0190300_00_4_2794729141.jpg?2794729141', 'Imagen 1', 8),
+(8, 'https://images.sprinter.es/539x539/products/0190300/0190300_03_4_1805280400.jpg?1805280400', 'Imagen 2', 8),
+(9, 'https://thumb.pccomponentes.com/w-530-530/articles/8/87397/energy-sistem-car-mp3-f2-racing-red.jpg', 'Imagen 1', 9),
+(10, 'https://thumb.pccomponentes.com/w-530-530/articles/8/87397/energy-sistem-car-mp3-f2-racing-red-1.jpg', 'Imagen 2', 9),
+(11, 'http://www.forumsport.com/img/productos/1000x1000/NIKE%20BAL%C3%93N%20FUTBOL%20STRIKE%20-%20LFP%2017-410600_00.jpg', 'Imagen 1', 10),
+(12, '', '', 0),
+(13, 'http://www.forumsport.com/img/productos/1000x1000/NIKE%20BAL%C3%93N%20FUTBOL%20STRIKE%20-%20LFP%2017-410600_00.jpg', 'Imagen 1', 10),
+(14, 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSw4557iyhH2J8VLDrtTnb43SEPDYdMt5irmH50IGZHdAQF4H3d', 'Imagen 1', 11),
+(15, 'https://i0.wp.com/elcatalejo.es/wp-content/uploads/2016/09/75159c.jpg', 'Imagen 2', 11),
+(16, 'http://cloud10.todocoleccion.online/monedas-antiguas-europa/tc/2011/01/26/24288647.jpg', 'Imagen 1', 12),
+(17, 'http://www.orodelguadalquivir.com/65-large_default/garrafa-5-litros-aceite-de-oliva-virgen-extra.jpg', 'Imagen 1', 13);
 
 -- --------------------------------------------------------
 
@@ -135,22 +159,28 @@ CREATE TABLE `linea_pedido` (
 --
 
 INSERT INTO `linea_pedido` (`id`, `importe`, `cantidad`, `FK_Pedido`, `FK_Articulo`) VALUES
-(1, 0, 123, 1, 1),
-(6, 100, 1213, 5, 1),
-(7, 100, 199, 12, 1),
-(9, 99.95, 1234, 11, 2),
-(12, 100, 20, 15, 1);
+(14, 154.99, 2, 17, 6),
+(15, 59.99, 3, 17, 7);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Lista_desear`
+-- Estructura de tabla para la tabla `lista_desear`
 --
 
 CREATE TABLE `lista_desear` (
   `id` int(11) NOT NULL,
   `FK_Usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `lista_desear`
+--
+
+INSERT INTO `lista_desear` (`id`, `FK_Usuario`) VALUES
+(1, 1),
+(2, 2),
+(3, 6);
 
 -- --------------------------------------------------------
 
@@ -171,10 +201,7 @@ CREATE TABLE `opinion` (
 --
 
 INSERT INTO `opinion` (`id`, `mensaje`, `fecha`, `FK_Usuario`, `FK_Articulo`) VALUES
-(1, 'Transaccion perfecta!', '2017-01-02', 1, 1),
-(2, '1111', '2017-01-04', 1, 1),
-(9, 'hola que ase', '2017-01-25', 2, 2),
-(10, 'hola que ase', '2017-01-25', 2, 2);
+(11, 'Funciona muy bien!', '2017-01-27', 6, 6);
 
 -- --------------------------------------------------------
 
@@ -193,19 +220,8 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`numpedido`, `fecha`, `FK_Usuario`) VALUES
-(1, '2017-01-11', 1),
-(5, '2017-01-25', 2),
-(6, '2017-01-25', 2),
-(7, '2017-01-25', 2),
-(8, '2017-01-25', 2),
-(9, '2017-01-25', 2),
-(10, '2017-01-25', 2),
-(11, '2017-01-25', 2),
-(12, '2017-01-25', 1),
-(13, '0000-00-00', 1),
-(14, '2017-01-25', 2),
-(15, '0000-00-00', 1),
-(16, '0000-00-00', 2);
+(17, '2017-01-27', 6),
+(18, '0000-00-00', 6);
 
 -- --------------------------------------------------------
 
@@ -256,7 +272,36 @@ INSERT INTO `sub_seccion` (`id`, `Nombre`, `FK_Seccion`) VALUES
 (4, 'Imagen y sonido', 2),
 (5, 'Camaras y fotografía', 2),
 (6, 'Electrodomésticos', 2),
-(7, 'Realidad virtual', 2);
+(7, 'Realidad virtual', 2),
+(8, 'Alfombras y moquetas', 3),
+(9, 'Artesania y manualidades', 3),
+(10, 'Baño', 3),
+(11, 'Bebes', 3),
+(12, 'Bricolaje', 3),
+(13, 'Bricolaje', 3),
+(14, 'Chimeneas y accesorios', 3),
+(15, 'Cocina', 3),
+(16, 'Chimeneas y accesorios', 3),
+(17, 'Ropa de cama', 3),
+(18, 'Ropa de hombre', 4),
+(19, 'Ropa de mujer', 4),
+(20, 'Ropa de niño', 4),
+(21, 'Calzado', 4),
+(22, 'Para coche', 5),
+(23, 'Para moto', 5),
+(24, 'Recambios', 5),
+(25, 'Futbol', 6),
+(26, 'Baloncesto', 6),
+(27, 'Ciclismo', 6),
+(28, 'Juguetes', 7),
+(29, 'Libros', 7),
+(30, 'Musica', 7),
+(31, 'Sellos', 8),
+(32, 'Banderas', 8),
+(33, 'Imanes', 8),
+(34, 'Aceites', 9),
+(35, 'Embutidos', 9),
+(36, 'Conservas', 9);
 
 -- --------------------------------------------------------
 
@@ -279,7 +324,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `Username`, `Password`, `Email`, `Telefono`, `admin`) VALUES
 (1, 'david', '12341234', 'david@david.com', 12345, 0),
-(2, 'admin', 'admin', 'admin@ebay.es', 1234, 1);
+(2, 'admin', 'admin', 'admin@ebay.es', 12346789, 1),
+(6, 'davidm', 'DavidM1234', 'david@gmail.com', 123456789, 0);
 
 --
 -- Índices para tablas volcadas
@@ -301,7 +347,7 @@ ALTER TABLE `articulo_usuario`
   ADD KEY `idArticulo_2` (`idArticulo`);
 
 --
--- Indices de la tabla `Deseo_Articulos`
+-- Indices de la tabla `deseo_Articulos`
 --
 ALTER TABLE `deseo_Articulos`
   ADD PRIMARY KEY (`FK_Articulos`,`FK_Lista_Desear`);
@@ -325,7 +371,7 @@ ALTER TABLE `linea_pedido`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `Lista_desear`
+-- Indices de la tabla `lista_desear`
 --
 ALTER TABLE `lista_desear`
   ADD PRIMARY KEY (`id`);
@@ -369,37 +415,37 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `linea_pedido`
 --
 ALTER TABLE `linea_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT de la tabla `Lista_desear`
+-- AUTO_INCREMENT de la tabla `lista_desear`
 --
 ALTER TABLE `lista_desear`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `numpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `numpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `seccion`
 --
@@ -409,12 +455,12 @@ ALTER TABLE `seccion`
 -- AUTO_INCREMENT de la tabla `sub_seccion`
 --
 ALTER TABLE `sub_seccion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
