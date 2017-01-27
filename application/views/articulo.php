@@ -146,11 +146,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?=$articulo->Descripcion?>
 	</p>
 		<?php
-			if(sizeof($opiniones)!=0)
-			{
-				echo "<legend>Opiniones</legend>";
+			echo "<legend>Opiniones</legend>";
 				$url = site_url('articulo/nuevaopinion');
 			echo "<div style=\"margin-bottom: 10px;\"><a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-comment\" aria-hidden=\"true\"></span> Nueva opinion</a></div>";
+			if(sizeof($opiniones)!=0)
+			{
 				foreach($opiniones as $opinion) {
 		?>
 				<div class="panel panel-default" style="width=100px;">
