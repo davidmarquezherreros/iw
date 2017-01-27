@@ -4,12 +4,11 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-	<link rel="stylesheet" href="<?php echo base_url("assets/css/registro.css"); ?>" />
+<?php
+	$this->load->view('inc/head.php');
+ ?>
+<link rel="stylesheet" href="<?php echo base_url("assets/css/registro.css"); ?>" />
 	<script type="text/javascript" src="<?php echo base_url("assets/js/validacion-registro.js"); ?>"></script>
-</head>
 <body class="container">
     <h2><?php echo $titulo; ?></h2>
 

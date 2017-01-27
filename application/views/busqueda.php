@@ -89,6 +89,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		?>
 	</div>
+	<?php
+	if($cuantosarticulos>6){
+	?>
 <script src="http://c.fzilla.com/1286136086-jquery.js"></script>  
 	<script src="http://c.fzilla.com/1291523190-jpaginate.js"></script>  
 	<script>  
@@ -96,6 +99,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$("#content").jPaginate({items: 6, next: "Siguiente", previous: "Anterior", paginaton_class: "myownclass"});          
 	});  
 	</script>
+	<?php
+	}
+	?>
 </main>
 <?php
 	$this->load->view('inc/pie.php')
