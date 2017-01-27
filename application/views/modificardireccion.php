@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
 	$this->load->view('inc/head.php');
  ?>
-<body>
+<body class="container">
 	<div id="container">
 		<div id="menu">
 			<?php
