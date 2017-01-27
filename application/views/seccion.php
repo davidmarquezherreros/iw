@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<h1>Seccion <strong><?=$nombreSeccion->Nombre?></strong></h1>
-	<div class="row">
+	<div id="content" class="row">
 		<?php
 			if(sizeof($articulos)!=0)
 			{
