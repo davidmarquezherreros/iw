@@ -175,10 +175,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		?>
 	</div>
-			<?php
- 			$url = site_url('articulo/nuevaopinion');
- 			echo "<a href='".$url."?articulo=".$articulo->id."'><span class=\"glyphicon glyphicon-comment\" aria-hidden=\"true\"></span> Nueva opinion</a>";
- 		 ?>
 </main>
 <?php
 	$this->load->view('inc/pie.php')
